@@ -1,0 +1,12 @@
+{
+  "name": "bi-sync-automation",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Bidirectional data synchronization automation for Google Sheets",
+  "scripts": {
+    "test": "node test-mapping.js"
+  },
+  "devDependencies": {
+    "@google/clasp": "^3.0.6"
+  }
+}

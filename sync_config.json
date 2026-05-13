@@ -1,0 +1,12 @@
+{
+  "sourceSpreadsheetId": "177DNuVB5mzPfwScwXwhtMkkxfb8yV0RV",
+  "sourceSheetName": "Validated FD Tickets",
+  "destSpreadsheetId": "1NHrBbGEPLTOvrFywTMdNKDdSoQxU1IGrFPSZZgtZ6Xo",
+  "destSheetName": "[nod_ph3]_fuel_delivery_ticket (48)",
+  "outputColumnCount": 41,
+  "sourceColumnCount": 33,
+  "writeMode": "overwrite_rows_2_onwards",
+  "preserveUnmappedColumnsByGpo": true,
+  "menuName": "DATA SYNC AUTOMATION",
+  "menuItemName": "Sync Data"
+}
