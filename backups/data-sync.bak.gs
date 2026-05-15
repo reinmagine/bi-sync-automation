@@ -1,5 +1,5 @@
 var CONFIG = {
-  sourceSpreadsheetId: '177DNuVB5mzPfwScwXwhtMkkxfb8yV0RV',
+  sourceSpreadsheetId: '1Pol0prbO-4MZjfITGqlhOJZdypnA2rA5cMfyrCbyutg',
   sourceSheetName: 'Validated FD Tickets',
   destSpreadsheetId: '1NHrBbGEPLTOvrFywTMdNKDdSoQxU1IGrFPSZZgtZ6Xo',
   destSheetName: '[nod_ph3]_fuel_delivery_ticket (48)',
@@ -21,11 +21,16 @@ function onInstall(e) {
 }
 
 function syncValidatedTickets() {
-  var config = getConfig_();
-  var sourceSpreadsheet = SpreadsheetApp.openById(config.sourceSpreadsheetId);
-  var destSpreadsheet = SpreadsheetApp.openById(config.destSpreadsheetId);
-  var sourceSheet = sourceSpreadsheet.getSheetByName(config.sourceSheetName);
-  var destSheet = destSpreadsheet.getSheetByName(config.destSheetName);
+  try {
+    var config = getConfig_();
+    var sourceSpreadsheet = SpreadsheetApp.openById(config.sourceSpreadsheetId);
+    var destSpreadsheet = SpreadsheetApp.openById(config.destSpreadsheetId);
+    var sourceSheet = sourceSpreadsheet.getSheetByName(config.sourceSheetName);
+    var destSheet = destSpreadsheet.getSheetByName(config.destSheetName);
+  } catch(e) {
+    SpreadsheetApp.getActiveSpreadsheet().toast('Error accessing spreadsheets: ' + e.message, 'ERROR', 10);
+    return {error: e.message};
+  }
 
   if (!sourceSheet) {
     throw new Error('Source sheet not found: ' + config.sourceSheetName);
