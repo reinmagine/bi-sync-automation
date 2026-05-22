@@ -30,14 +30,14 @@ function onInstall(e) {
 }
 
 function buildDataSyncMenu_(ui) {
-  ui.createMenu("DATA SYNC AUTOMATION")
+  ui.createMenu("DATA SYNC")
     .addItem("Sync Data", "syncValidatedTickets")
     .addItem("Show Instructions", "showDataSyncInstructions")
     .addToUi();
 }
 
 function buildFuelMenu_(ui) {
-  ui.createMenu("FUEL DASHBOARD LOOKUP AUTOMATION")
+  ui.createMenu("FUEL DASHBOARD LOOKUP")
     .addItem("Start Process", "startProcess")
     .addItem("Show Instructions", "showInstructions")
     .addToUi();
@@ -355,7 +355,7 @@ function syncValidatedTickets() {
     " rows skipped.";
   SpreadsheetApp.getActiveSpreadsheet().toast(
     summary,
-    "DATA SYNC",
+    "DATA SYNC AUTOMATION",
     5,
   );
   return {
