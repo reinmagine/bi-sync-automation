@@ -355,7 +355,7 @@ function syncValidatedTickets() {
     " rows skipped.";
   SpreadsheetApp.getActiveSpreadsheet().toast(
     summary,
-    "DATA SYNC AUTOMATION",
+    "DATA SYNC",
     5,
   );
   return {
