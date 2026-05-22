@@ -1,6 +1,6 @@
 const PROTECTED_MAX_COL = 32; // A:AF
 
-function onOpen() {
+function backupOnOpen() {
   SpreadsheetApp.getUi()
     .createMenu("FUEL DASHBOARD LOOKUP AUTOMATION")
     .addItem("Start Process", "startProcess")

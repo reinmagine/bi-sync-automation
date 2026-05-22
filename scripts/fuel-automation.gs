@@ -32,6 +32,7 @@ function onInstall(e) {
 function buildDataSyncMenu_(ui) {
   ui.createMenu("DATA SYNC AUTOMATION")
     .addItem("Sync Data", "syncValidatedTickets")
+    .addItem("Show Instructions", "showDataSyncInstructions")
     .addToUi();
 }
 
@@ -40,6 +41,21 @@ function buildFuelMenu_(ui) {
     .addItem("Start Process", "startProcess")
     .addItem("Show Instructions", "showInstructions")
     .addToUi();
+}
+
+function showDataSyncInstructions() {
+  var ui = SpreadsheetApp.getUi();
+  var message = [
+    "Please follow these steps before starting the data sync:",
+    "",
+    "1. Confirm that this spreadsheet is connected to the intended destination sheet.",
+    "2. Verify that the source sheet 'Validated FD Tickets' is up to date.",
+    "3. Review the mapped output columns before syncing, because the process overwrites rows starting from row 2.",
+    "4. Make sure any manual edits you want to keep are backed up before running Sync Data.",
+    "5. Run Sync Data only after the source records are finalized.",
+  ].join("\n");
+
+  ui.alert("Data Sync Instructions", message, ui.ButtonSet.OK);
 }
 
 /* ---------------- FUEL DASHBOARD LOOKUP AUTOMATION ---------------- */
@@ -603,6 +619,7 @@ function shouldExpectResponsible(statusKey) {
     statusKey !== "CLOSED" &&
     statusKey !== "REJECTED" &&
     statusKey !== "CANCELLED" &&
+    statusKey !== "DECLINED" &&
     statusKey !== "NO STATUS"
   );
 }
@@ -655,7 +672,8 @@ function computeTicketStatus(statusValue) {
   var normalized = normalizeKey(statusValue);
   return normalized === "CLOSED" ||
     normalized === "REJECTED" ||
-    normalized === "CANCELLED"
+    normalized === "CANCELLED" ||
+    normalized === "DECLINED"
     ? "CLOSED"
     : "OPEN";
 }

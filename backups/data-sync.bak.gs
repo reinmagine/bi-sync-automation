@@ -9,15 +9,15 @@ var CONFIG = {
   dataStartRow: 2
 };
 
-function onOpen() {
+function backupOnOpen() {
   SpreadsheetApp.getUi()
     .createMenu('DATA SYNC AUTOMATION')
     .addItem('Sync Data', 'syncValidatedTickets')
     .addToUi();
 }
 
-function onInstall(e) {
-  onOpen(e);
+function backupOnInstall(e) {
+  backupOnOpen(e);
 }
 
 function syncValidatedTickets() {

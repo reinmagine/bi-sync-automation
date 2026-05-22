@@ -44,6 +44,23 @@ function parseDateString(text) {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
+function normalizeKey(value) {
+  if (value === null || value === undefined) return '';
+  const cleaned = String(value).replace(/\u200B|\uFEFF|\u00A0/g, '').trim();
+  return cleaned.toUpperCase();
+}
+
+function computeTicketStatus(statusValue) {
+  if (statusValue === '' || statusValue == null) return '';
+  const normalized = normalizeKey(statusValue);
+  return normalized === 'CLOSED' ||
+    normalized === 'REJECTED' ||
+    normalized === 'CANCELLED' ||
+    normalized === 'DECLINED'
+    ? 'CLOSED'
+    : 'OPEN';
+}
+
 function buildDestinationRow(sourceRow, sourceDisplayRow, existingRow) {
   const row = padRow(existingRow ? existingRow.slice() : [], 41);
 
@@ -117,5 +134,8 @@ assert.strictEqual(output[30], 'No');
 assert.strictEqual(output[32], 'preserve territory tagging');
 assert.strictEqual(output[33], 'CLOSED');
 assert.strictEqual(output[34], 'BAU');
+
+assert.strictEqual(computeTicketStatus('DECLINED'), 'CLOSED');
+assert.strictEqual(computeTicketStatus('dispatched'), 'OPEN');
 
 console.log('Mapping test passed.');

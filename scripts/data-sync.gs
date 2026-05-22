@@ -24,6 +24,7 @@ function onOpen(e) {
 function buildDataSyncMenu_(ui) {
   ui.createMenu('DATA SYNC AUTOMATION')
     .addItem('Sync Data', 'syncValidatedTickets')
+    .addItem('Show Instructions', 'showInstructions')
     .addToUi();
 }
 

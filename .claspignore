@@ -1,0 +1,3 @@
+backups/**
+scripts/data-sync.gs
+test-mapping.js
